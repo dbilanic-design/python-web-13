@@ -1,0 +1,6 @@
+@app.post("/avatar")
+def upload_avatar(file: UploadFile, user=Depends(get_current_user)):
+    url = upload_avatar(file)
+    user.avatar = url
+    db.commit()
+    return {"avatar": url}
